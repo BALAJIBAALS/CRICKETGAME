@@ -11,9 +11,6 @@ public class CricketGame
         Player opponent1,opponent2,opponent3,opponent4,opponent5,opponent6,opponent7,opponent8,opponent9,opponent10,opponent11;
         DbConnection dbconnector = new DbConnection();
 
-
-
-
         player1 = new Player(1,dbconnector.playingEleven(1) ,Player.Role.BATSMAN);
         player2 = new Player(2,dbconnector.playingEleven(2) , Player.Role.BATSMAN);
         player3 = new Player(3,dbconnector.playingEleven(3), Player.Role.BATSMAN);
