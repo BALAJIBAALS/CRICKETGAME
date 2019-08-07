@@ -231,6 +231,16 @@ public class DbConnection
         } catch (Exception e) { System.out.println(e); return 0;}
     }
 
+    public void scoreperball(int matchid,int nthinnings,String battingteam,int over,int ball,String batsman,String bowler,String outcome)
+    {
+        try {
+            Connection con = mysqlConnection();
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate("INSERT INTO `cricketgame`.`ScoreBoardPerBall` VALUES ("+matchid+","+nthinnings+",'"+battingteam+"',"+over+","+ball+",'"+batsman+"','"+bowler+"','"+outcome+"');");
+            con.close();
+        } catch (Exception e) { System.out.println(e);}
+    }
+
 
 
     public Connection mysqlConnection()
@@ -238,7 +248,7 @@ public class DbConnection
         try
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cricketgame", "", "");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cricketgame", "root", "balabala4");
             return con;
         } catch (Exception e) { System.out.println(e);return null;}
 
