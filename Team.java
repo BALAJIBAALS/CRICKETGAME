@@ -7,8 +7,6 @@ public class Team
     private int teamid;
     private ArrayList<Player> players;
     private String name;
-    int [][] scorecard = new int[5][6];
-    int [][] wicket_fall = new int[5][6];
     DbConnection teamobj = new DbConnection();
 
     public void addPlayers(ArrayList<Player> team)
@@ -54,27 +52,13 @@ public class Team
 
     public int getTeamid()
     {
+
         return this.teamid;
     }
-
-
 
     public Player nthPlayer(int n)
     {
 
         return players.get(n);
     }
-
-
-   /* public void SetScoreuptoEachBall(int overs,int balls)
-    {
-        scorecard[overs][balls] = this.getTeamScore();
-        wicket_fall[overs][balls] = this.getWickets();
-    }
-    public void GetScoreuptoEachBall(int overs,int balls)
-    {
-        System.out.println("The score when" +overs+ " . " +balls+ " is "+scorecard[overs][balls] +" for the loss of "+wicket_fall[overs][balls]);
-
-    }
- */
 }
