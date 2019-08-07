@@ -248,7 +248,7 @@ public class DbConnection
         try
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("", "", "");
+            Connection con = DriverManager.getConnection("", "", ""); //connection details has to be mentioned
             return con;
         } catch (Exception e) { System.out.println(e);return null;}
 
