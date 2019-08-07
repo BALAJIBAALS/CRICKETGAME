@@ -32,6 +32,7 @@ public class Match
     public void innings(Team battingteam,Team bowlingteam,int nthinnings)
     {
         int striker =0,bowlerpos =11,teamscore =0,overcount = 0,run_for_each_ball;
+        String outcome,strikerbatsman;
         boolean allout = false;
         batsman1 = battingteam.nthPlayer(striker);
         batsman2 = battingteam.nthPlayer(++striker);
@@ -46,7 +47,8 @@ public class Match
                 System.out.println("Bowler Name ------>"+bowler.GetPlayerName());
                 int ballnumber =ball+1;
                 System.out.println("Ballnumber" +ballnumber);
-                System.out.println("Batsman at Striker End ------>"+batsman1.GetPlayerName());
+                strikerbatsman=batsman1.GetPlayerName();
+                System.out.println("Batsman at Striker End ------>"+strikerbatsman);
                 ThreadLocalRandom runs = ThreadLocalRandom.current();
                 run_for_each_ball = runs.nextInt(-1,7);
 
@@ -62,8 +64,7 @@ public class Match
 
                 if(run_for_each_ball == -1) // if wicket occurs
                 {
-
-                    System.out.println("OUT ----------------->"+batsman1.GetPlayerName()+" BY "+ bowler.GetPlayerName());
+                    System.out.println("OUT ----------------->"+strikerbatsman+" BY "+ bowler.GetPlayerName());
                     battingteam.out(matchid,nthinnings);  // team out
                     battingteam.addScore(0,matchid,nthinnings); // team runs
                     bowler.CountWickets();  // adding wickets to bowler
@@ -83,8 +84,9 @@ public class Match
 
 
                 }
+                outcome =(run_for_each_ball ==-1)? "W" : Integer.toString(run_for_each_ball);
 
-                //battingteam.SetScoreuptoEachBall(overcount,ball); // to track the score upto each ball and calls the Team class to store
+                matchobj.scoreperball(matchid,nthinnings,battingteam.getTeamName(),overcount,ballnumber,strikerbatsman,bowler.GetPlayerName(),outcome);
 
                 if((run_for_each_ball !=-1) && ((run_for_each_ball %2 ==1) || ball==5) && battingteam.getWickets(matchid,nthinnings)<10)  //switch batsman only if batsman is available
                 {
@@ -130,10 +132,4 @@ public class Match
         System.out.println("------------GAME OVER-----------------------------------------");
 
     }
-
-// ----------SCORECARD FOR EACH BALL -----------------------------------------------------
-/*
- battingfirst.GetScoreuptoEachBall(4,2); // uncomment to get the score at a particular instance
-*/
-
 }
